@@ -1,0 +1,11 @@
+ .Ds_Store
+node_modules
+build/docs/
+package-lock.json
+/dist
+/es
+/lib
+/coverage
+/temp
+.temp
+.cache

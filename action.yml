@@ -1,12 +1,79 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
+name: 'send mail'
+description: 'send mail'
+author: 'cheng'
+branding:
+  icon: mail
+  color: blue
 inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  connection_url:
+    description: Connection URL protocol://user:password@server:port, protocol can be smtp or smtp+starttls, replaces server_address, server_port, secure, username and password
+  server_address:
+    description: SMTP server address
+  server_port:
+    description: SMTP server port
+    default: "25"
+  secure:
+    description: Whether this connection use TLS (default is true if server_port is 465)
+  username:
+    description: Authenticate as this user to SMTP server
+  password:
+    description: Authenticate with this password to SMTP server
+  subject:
+    description: Subject of mail message
+    required: true
+  to:
+    description: Recipients mail addresses (separated with comma)
+    required: true
+  from:
+    description: Full name of mail sender (might be with an email address specified in <>)
+    required: true
+  body:
+    description: Body of mail message (might be a filename prefixed with file:// to read from)
+    required: false
+  html_body:
+    description: HTML body of mail message (might be a filename prefixed with file:// to read from)
+    required: false
+  cc:
+    description: Carbon copy recipients (separated with comma)
+    required: false
+  bcc:
+    description: Blind carbon copy recipients (separated with comma)
+    required: false
+  reply_to:
+    description: An email address that will appear on the Reply-To field
+    required: false
+  in_reply_to:
+    description: The Message-ID this message is replying to
+    required: false
+  ignore_cert:
+    description: Allow unsigned/invalid certificates
+    required: false
+  attachments:
+    description: Files that will be added to mail message attachments (separated with comma)
+    required: false
+  priority:
+    description: Set Priority level for the mail message to 'high', 'normal' (default) or 'low'
+    required: false
+
+  isWeather:
+    description: Whether to configure and weather weather
+    required: false
+  weatherKey:
+    description: Whether to configure and weather weather
+    required: true
+  location: 
+    description: 需要查询地区的LocationID或以英文逗号分隔的经度,纬度坐标（十进制，最多支持小数点后两位），LocationID可通过城市搜索服务获取。例如 location=101010100 或 location=116.41,39.92
+    required: true
+  type: 
+    description: 和风天气-生活指数type
+    default: '1,3,9'
+  txKey:
+    description: 天行数据的key
+    default: 'eb75297818f2413f24e1f1f76662bccd'
+  startDay: 
+    description: 在一起的时间
+    required: false
+  
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.myInput }}
+  using: node16
+  main: main.js
