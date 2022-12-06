@@ -3,7 +3,6 @@ const fetch = require('node-fetch');
 const daysjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
 const timezone = require('dayjs/plugin/timezone');
-const fs = require("fs");
 daysjs.extend(utc);
 daysjs.extend(timezone);
 
